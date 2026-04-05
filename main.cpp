@@ -63,16 +63,16 @@ int main()
     int K;
     std::string name1, name2;
 
-    std::cout << "¬ведите число K: ";
+    std::cout << "Введите число K: ";
     std::cin >> K;
-    std::cout << "¬ведите им¤ первого файла: ";
+    std::cout << "Введите имя первого файла: ";
     std::cin >> name1;
-    std::cout << "¬ведите им¤ второго файла: ";
+    std::cout << "Введите имя второго файла: ";
     std::cin >> name2;
 
     std::ifstream file1(name1);
     if (!file1.is_open()) {
-        std::cout << "ќшибка: не удалось открыть файл " << name1 << std::endl;
+        std::cout << "Ошибка: не удалось открыть файл " << name1 << std::endl;
         return 1;
     }
 
@@ -87,7 +87,7 @@ int main()
     std::ifstream file2(name2);
     if (!file2.is_open())
     {
-        std::cout << "ќшибка: не удалось открыть файл " << name2 << std::endl;
+        std::cout << "Ошибка: не удалось открыть файл " << name2 << std::endl;
         return 1;
     }
 
@@ -99,7 +99,7 @@ int main()
 
     if (V1.size() != V2.size()) 
     {
-        std::cout << "ќшибка: файлы содержат разное количество элементов!" << std::endl;
+        std::cout << "Ошибка: файлы содержат разное количество элементов!" << std::endl;
         std::cout << "V1: " << V1.size() << ", V2: " << V2.size() << std::endl;
         return 1;
     }
@@ -111,7 +111,7 @@ int main()
         result[i] = V1[i].mult(K) + V2[i];
     }
 
-    std::cout << "\n–езультат преобразований:\n";
+    std::cout << "\nРезультат преобразований:\n";
     for (const auto& p : result) {
         std::cout << p << std::endl;
     }
