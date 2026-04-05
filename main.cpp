@@ -15,7 +15,7 @@ int main()
         "PEACH", "CHERRY", "MANGO", "KIWI", "PLUM", "BALOON"
     };
 
-    std::cout << "»сходный вектор:\n";
+    std::cout << "исходный вектор:\n";
     for (const auto& word : V) 
     {
         std::cout << word << " ";
@@ -46,10 +46,10 @@ int main()
         }
     }
 
-    std::cout << "–езультат (буква + строка из слов, кроме последнего):\n";
+    std::cout << "Результат (буква + строка из слов, кроме последнего):\n";
     for (const auto& pair : M) {
         if (pair.second.empty()) {
-            std::cout << pair.first << " - пуста¤ строка\n";
+            std::cout << pair.first << " - пустая строка\n";
         }
         else {
             std::cout << pair.first << " - \"" << pair.second << "\"\n";
