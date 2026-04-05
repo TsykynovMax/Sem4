@@ -18,7 +18,7 @@ int main()
         i = D.erase(++i);
     }
 
-    std::cout << "ƒек после удалени¤: ";
+    std::cout << "Дек после удаления: ";
     for (int x : D) std::cout << x << " ";
     std::cout << std::endl;
 
