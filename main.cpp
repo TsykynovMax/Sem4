@@ -19,7 +19,7 @@ struct point
 
     point(int x_, int y_, const std::string& s_) : x(x_), y(y_), s(s_) {}
 
-    bool operator<(const point& other) const 
+    bool operator<(const point& other) const
     {
         if (x != other.x) return x < other.x;
         return y < other.y;
@@ -50,18 +50,19 @@ std::istream& operator>>(std::istream& is, point& p)
     return is;
 }
 
-std::ostream& operator<<(std::ostream& os, const point& p) 
+std::ostream& operator<<(std::ostream& os, const point& p)
 {
     os << p.x << " " << p.y << " " << p.s;
     return os;
 }
 
-int main() 
+int main()
 {
     setlocale(LC_ALL, "Russian");
 
-    int K;
-    std::string name1, name2;
+    int K = 0;
+    std::string name1 = "";
+    std::string name2 = "";
 
     std::cout << "Введите число K: ";
     std::cin >> K;
@@ -71,17 +72,18 @@ int main()
     std::cin >> name2;
 
     std::ifstream file1(name1);
-    if (!file1.is_open()) {
+    if (!file1.is_open())
+    {
         std::cout << "Ошибка: не удалось открыть файл " << name1 << std::endl;
         return 1;
     }
 
     std::vector<point> V1;
-    point temp;
-    while (file1 >> temp) 
-    {
-        V1.push_back(temp);
-    }
+    std::copy(
+        std::istream_iterator<point>(file1),
+        std::istream_iterator<point>(),
+        std::back_inserter(V1)
+    );
     file1.close();
 
     std::ifstream file2(name2);
@@ -92,12 +94,14 @@ int main()
     }
 
     std::vector<point> V2;
-    while (file2 >> temp) {
-        V2.push_back(temp);
-    }
+    std::copy(
+        std::istream_iterator<point>(file2),
+        std::istream_iterator<point>(),
+        std::back_inserter(V2)
+    );
     file2.close();
 
-    if (V1.size() != V2.size()) 
+    if (V1.size() != V2.size())
     {
         std::cout << "Ошибка: файлы содержат разное количество элементов!" << std::endl;
         std::cout << "V1: " << V1.size() << ", V2: " << V2.size() << std::endl;
@@ -106,7 +110,7 @@ int main()
 
     std::vector<point> result(V1.size());
 
-    for (size_t i = 0; i < V1.size(); ++i) 
+    for (size_t i = 0; i < V1.size(); ++i)
     {
         result[i] = V1[i].mult(K) + V2[i];
     }
