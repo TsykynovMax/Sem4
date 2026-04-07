@@ -15,7 +15,7 @@ int main()
         "PEACH", "CHERRY", "MANGO", "KIWI", "PLUM", "BALOON"
     };
 
-    std::cout << "исходный вектор:\n";
+    std::cout << "Исходный вектор:\n";
     for (const auto& word : V) 
     {
         std::cout << word << " ";
@@ -25,33 +25,36 @@ int main()
     std::map<char, std::string> M;
 
   
-    for (int i = V.size() - 1; i >= 0; --i) 
+    for (auto it = V.rbegin(); it != V.rend(); ++it)
     {
-        std::string word = V[i];
+        std::string word = *it;  
         char lastLetter = word.back();
 
-        auto it = M.find(lastLetter);
+        auto mit = M.find(lastLetter);
 
-        if (it == M.end()) 
+        if (mit == M.end())
         {
             M[lastLetter] = "";
         }
         else
         {
-            if (!it->second.empty()) 
+            if (!mit->second.empty())
             {
-                it->second += " ";  
+                mit->second += " ";
             }
-            it->second += word;
+            mit->second += word;
         }
     }
 
     std::cout << "Результат (буква + строка из слов, кроме последнего):\n";
-    for (const auto& pair : M) {
-        if (pair.second.empty()) {
+    for (const auto& pair : M) 
+    {
+        if (pair.second.empty()) 
+        {
             std::cout << pair.first << " - пустая строка\n";
         }
-        else {
+        else
+        {
             std::cout << pair.first << " - \"" << pair.second << "\"\n";
         }
     }
