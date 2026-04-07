@@ -1,14 +1,26 @@
 ﻿#include <iostream>
 #include <deque>
+#include <string>
+#include <sstream>
 
 int main()
 {
     setlocale(LC_ALL, "Russian");
-    std::deque<int> D = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 }; 
+
+    std::deque<int> D;
+    std::string line;
+
+    std::cout << "Введите элементы дека: ";
+    std::getline(std::cin, line);
+    std::stringstream ss(line);
+    int value;
+    while (ss >> value) {
+        D.push_back(value);
+    }
 
     int N = D.size();
 
-    std::cout << "»сходный дек: ";
+    std::cout << "Исходный дек: ";
     for (int x : D) std::cout << x << " ";
     std::cout << std::endl;
 
