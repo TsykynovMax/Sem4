@@ -2,6 +2,14 @@
 #include <deque>
 #include <string>
 #include <sstream>
+#include <iterator>
+
+void printDeque(const std::deque<int>& D, const std::string& message)
+{
+    std::cout << message;
+    for (int x : D) std::cout << x << " ";
+    std::cout << std::endl;
+}
 
 int main()
 {
@@ -13,16 +21,12 @@ int main()
     std::cout << "Введите элементы дека: ";
     std::getline(std::cin, line);
     std::stringstream ss(line);
-    int value;
-    while (ss >> value) {
-        D.push_back(value);
-    }
+
+    std::copy(std::istream_iterator<int>(ss), std::istream_iterator<int>(), std::back_inserter(D));
 
     int N = D.size();
 
-    std::cout << "Исходный дек: ";
-    for (int x : D) std::cout << x << " ";
-    std::cout << std::endl;
+    printDeque(D, "Исходный дек: ");
 
     auto i = D.begin();
 
@@ -30,9 +34,7 @@ int main()
         i = D.erase(++i);
     }
 
-    std::cout << "Дек после удаления: ";
-    for (int x : D) std::cout << x << " ";
-    std::cout << std::endl;
+    printDeque(D, "Дек после удаления: ");
 
     return 0;
 }
