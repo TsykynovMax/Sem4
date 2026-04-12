@@ -1,63 +1,40 @@
 ﻿#include <iostream>
-#include <vector>
-#include <map>
+#include <deque>
 #include <string>
-#include <clocale>
+#include <sstream>
+#include <iterator>
 
-int main() 
+void printDeque(const std::deque<int>& D, const std::string& message)
+{
+    std::cout << message;
+    for (int x : D) std::cout << x << " ";
+    std::cout << std::endl;
+}
+
+int main()
 {
     setlocale(LC_ALL, "Russian");
 
- 
-    std::vector<std::string> V = 
-    {
-        "APPLE", "BANANA", "ORANGE", "GRAPE", "LEMON",
-        "PEACH", "CHERRY", "MANGO", "KIWI", "PLUM", "BALOON"
-    };
+    std::deque<int> D;
+    std::string line;
 
-    std::cout << "Исходный вектор:\n";
-    for (const auto& word : V) 
-    {
-        std::cout << word << " ";
-    }
-    std::cout << "\n\n";
+    std::cout << "Введите элементы дека: ";
+    std::getline(std::cin, line);
+    std::stringstream ss(line);
 
-    std::map<char, std::string> M;
+    std::copy(std::istream_iterator<int>(ss), std::istream_iterator<int>(), std::back_inserter(D));
 
-  
-    for (auto it = V.rbegin(); it != V.rend(); ++it)
-    {
-        std::string word = *it;  
-        char lastLetter = word.back();
+    int N = D.size();
 
-        auto mit = M.find(lastLetter);
+    printDeque(D, "Исходный дек: ");
 
-        if (mit == M.end())
-        {
-            M[lastLetter] = "";
-        }
-        else
-        {
-            if (!mit->second.empty())
-            {
-                mit->second += " ";
-            }
-            mit->second += word;
-        }
+    auto i = D.begin();
+
+    for (int k = 0; k < N / 4; ++k) {
+        i = D.erase(++i);
     }
 
-    std::cout << "Результат (буква + строка из слов, кроме последнего):\n";
-    for (const auto& pair : M) 
-    {
-        if (pair.second.empty()) 
-        {
-            std::cout << pair.first << " - пустая строка\n";
-        }
-        else
-        {
-            std::cout << pair.first << " - \"" << pair.second << "\"\n";
-        }
-    }
+    printDeque(D, "Дек после удаления: ");
 
     return 0;
 }
