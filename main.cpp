@@ -24,13 +24,13 @@ int main()
 
     std::copy(std::istream_iterator<int>(ss), std::istream_iterator<int>(), std::back_inserter(D));
 
-    int N = D.size();
+    int n = D.size();
 
     printDeque(D, "Исходный дек: ");
 
     auto i = D.begin();
 
-    for (int k = 0; k < N / 4; ++k) {
+    for (size_t k = 0; k < n / 4; ++k) {
         i = D.erase(++i);
     }
 
