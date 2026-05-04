@@ -4,6 +4,12 @@
 #include <sstream>
 #include <iterator>
 
+/**
+ * @brief Выводит содержимое дека в консоль
+ *
+ * @param D Ссылка на дек целых чисел
+ * @param message Сообщение, выводимое перед содержимым дека
+ */
 void printDeque(const std::deque<int>& D, const std::string& message)
 {
     std::cout << message;
@@ -11,6 +17,14 @@ void printDeque(const std::deque<int>& D, const std::string& message)
     std::cout << std::endl;
 }
 
+/**
+ * @brief Точка входа в программу
+ *
+ * Запрашивает у пользователя элементы дека, удаляет каждый второй элемент
+ * в первой четверти дека и выводит результат
+ *
+ * @return int Точка выхода (0 - успешное выполнение)
+ */
 int main()
 {
     setlocale(LC_ALL, "Russian");
@@ -22,7 +36,9 @@ int main()
     std::getline(std::cin, line);
     std::stringstream ss(line);
 
-    std::copy(std::istream_iterator<int>(ss), std::istream_iterator<int>(), std::back_inserter(D));
+    std::copy(std::istream_iterator<int>(ss),
+        std::istream_iterator<int>(),
+        std::back_inserter(D));
 
     int n = D.size();
 
@@ -36,5 +52,5 @@ int main()
 
     printDeque(D, "Дек после удаления: ");
 
-    return 0;
+    return 0; 
 }
